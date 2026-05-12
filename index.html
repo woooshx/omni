@@ -78,74 +78,145 @@
 
     <!-- Products Section -->
     <section class="products-section" id="coleccion">
-        <h2 class="section-title">Reliquias Disponibles</h2>
-        <div class="product-grid value-grid">
+        <div class="products-header">
+            <h2 class="section-title">Reliquias Disponibles</h2>
+            <div class="products-filter-bar">
+                <button class="filter-btn active ui-text" data-filter="all">Todas</button>
+                <button class="filter-btn ui-text" data-filter="codex">CODEX</button>
+                <button class="filter-btn ui-text" data-filter="merkaba">MERKABA</button>
+                <button class="filter-btn ui-text" data-filter="fractales">FRACTALES</button>
+            </div>
+        </div>
+        <div class="product-grid marketplace-grid">
             <!-- Producto 1: CODEX MAGNUM -->
-            <div class="product-card fade-in">
-                <div class="product-image">
+            <div class="marketplace-card fade-in" data-category="codex">
+                <div class="marketplace-image">
                     <span class="product-image-placeholder">⬡</span>
-                    <div class="product-badge">
+                    <div class="marketplace-badge-top">
                         <span class="scarcity-badge">🔥 Casi agotado</span>
                     </div>
+                    <button class="wishlist-btn" aria-label="Añadir a favoritos">♡</button>
                 </div>
-                <div class="product-info">
-                    <div class="product-collection ui-text">CODEX MAGNUM</div>
-                    <h3 class="product-title">Ouroboros Cuántico</h3>
-                    <p class="product-story body-text">
-                        La serpiente que se muerde la cola representa el ciclo infinito de muerte y renacimiento.
-                        Llévalo como recordatorio de tu capacidad de transformar cada final en un nuevo comienzo.
-                    </p>
-                    <div class="product-price ui-text">$110.000 COP</div>
-                    <div class="stock-indicator ui-text">
+                <div class="marketplace-info">
+                    <div class="marketplace-price-row">
+                        <span class="marketplace-price">$110.000 COP</span>
+                    </div>
+                    <h3 class="marketplace-title">Ouroboros Cuántico</h3>
+                    <p class="marketplace-location body-text">CODEX MAGNUM · Edición Limitada</p>
+                    <div class="marketplace-stock ui-text">
                         🔥 Solo 3 unidades
                     </div>
-                    <button class="btn-cta ui-text" onclick="addToCart('Ouroboros Cuántico')">Portar el símbolo</button>
+                    <button class="btn-marketplace-cta ui-text" onclick="addToCart('Ouroboros Cuántico')">Portar símbolo</button>
                 </div>
             </div>
 
             <!-- Producto 2: MERKABA -->
-            <div class="product-card fade-in">
-                <div class="product-image">
+            <div class="marketplace-card fade-in" data-category="merkaba">
+                <div class="marketplace-image">
                     <span class="product-image-placeholder">✡️</span>
-                    <div class="product-badge">
+                    <div class="marketplace-badge-top">
                         <span class="success-badge">✓ Más vendido</span>
                     </div>
+                    <button class="wishlist-btn" aria-label="Añadir a favoritos">♡</button>
                 </div>
-                <div class="product-info">
-                    <div class="product-collection ui-text">MERKABA</div>
-                    <h3 class="product-title">Estrella Tetraédrica</h3>
-                    <p class="product-story body-text">
-                        El vehículo de luz que conecta cielo y tierra. Esta estrella de dos tetraedros entrelazados
-                        activa tu campo energético y te protege durante tu viaje espiritual.
-                    </p>
-                    <div class="product-price ui-text">$110.000 COP</div>
-                    <div class="stock-indicator ui-text">
+                <div class="marketplace-info">
+                    <div class="marketplace-price-row">
+                        <span class="marketplace-price">$110.000 COP</span>
+                    </div>
+                    <h3 class="marketplace-title">Estrella Tetraédrica</h3>
+                    <p class="marketplace-location body-text">MERKABA · Vehículo de Luz</p>
+                    <div class="marketplace-stock ui-text">
                         ✅ Disponible
                     </div>
-                    <button class="btn-cta ui-text" onclick="addToCart('Estrella Tetraédrica')">Activar mi Merkaba</button>
+                    <button class="btn-marketplace-cta ui-text" onclick="addToCart('Estrella Tetraédrica')">Activar Merkaba</button>
                 </div>
             </div>
 
             <!-- Producto 3: FRACTALES -->
-            <div class="product-card fade-in">
-                <div class="product-image">
+            <div class="marketplace-card fade-in" data-category="fractales">
+                <div class="marketplace-image">
                     <span class="product-image-placeholder">🌀</span>
-                    <div class="product-badge">
+                    <div class="marketplace-badge-top">
                         <span class="scarcity-badge">Última oportunidad</span>
                     </div>
+                    <button class="wishlist-btn" aria-label="Añadir a favoritos">♡</button>
                 </div>
-                <div class="product-info">
-                    <div class="product-collection ui-text">FRACTALES</div>
-                    <h3 class="product-title">Portal Toroidal Neón</h3>
-                    <p class="product-story body-text">
-                        Un agujero de gusano de luz vibrante que parece absorberte hacia el centro del pecho.
-                        El viaje más largo y psicodélico es el viaje hacia el interior.
-                    </p>
-                    <div class="product-price ui-text">$110.000 COP</div>
-                    <div class="stock-indicator ui-text">
+                <div class="marketplace-info">
+                    <div class="marketplace-price-row">
+                        <span class="marketplace-price">$110.000 COP</span>
+                    </div>
+                    <h3 class="marketplace-title">Portal Toroidal Neón</h3>
+                    <p class="marketplace-location body-text">FRACTALES · Geometría Sagrada</p>
+                    <div class="marketplace-stock ui-text">
                         🔥 Solo 2 unidades
                     </div>
-                    <button class="btn-cta ui-text" onclick="addToCart('Portal Toroidal')">Portar el símbolo</button>
+                    <button class="btn-marketplace-cta ui-text" onclick="addToCart('Portal Toroidal')">Portar símbolo</button>
+                </div>
+            </div>
+
+            <!-- Producto 4: Additional -->
+            <div class="marketplace-card fade-in" data-category="codex">
+                <div class="marketplace-image">
+                    <span class="product-image-placeholder">𓂀</span>
+                    <div class="marketplace-badge-top">
+                        <span class="success-badge">✓ Nuevo</span>
+                    </div>
+                    <button class="wishlist-btn" aria-label="Añadir a favoritos">♡</button>
+                </div>
+                <div class="marketplace-info">
+                    <div class="marketplace-price-row">
+                        <span class="marketplace-price">$110.000 COP</span>
+                    </div>
+                    <h3 class="marketplace-title">Ojo de Horus Digital</h3>
+                    <p class="marketplace-location body-text">CODEX MAGNUM · Protección</p>
+                    <div class="marketplace-stock ui-text">
+                        ✅ Disponible
+                    </div>
+                    <button class="btn-marketplace-cta ui-text" onclick="addToCart('Ojo de Horus')">Portar símbolo</button>
+                </div>
+            </div>
+
+            <!-- Producto 5: Additional -->
+            <div class="marketplace-card fade-in" data-category="merkaba">
+                <div class="marketplace-image">
+                    <span class="product-image-placeholder">☽</span>
+                    <div class="marketplace-badge-top">
+                        <span class="scarcity-badge">🔥 Poco stock</span>
+                    </div>
+                    <button class="wishlist-btn" aria-label="Añadir a favoritos">♡</button>
+                </div>
+                <div class="marketplace-info">
+                    <div class="marketplace-price-row">
+                        <span class="marketplace-price">$110.000 COP</span>
+                    </div>
+                    <h3 class="marketplace-title">Triple Luna Alquímica</h3>
+                    <p class="marketplace-location body-text">MERKABA · Ciclos Femininos</p>
+                    <div class="marketplace-stock ui-text">
+                        🔥 Solo 5 unidades
+                    </div>
+                    <button class="btn-marketplace-cta ui-text" onclick="addToCart('Triple Luna')">Portar símbolo</button>
+                </div>
+            </div>
+
+            <!-- Producto 6: Additional -->
+            <div class="marketplace-card fade-in" data-category="fractales">
+                <div class="marketplace-image">
+                    <span class="product-image-placeholder">∞</span>
+                    <div class="marketplace-badge-top">
+                        <span class="success-badge">✓ Trending</span>
+                    </div>
+                    <button class="wishlist-btn" aria-label="Añadir a favoritos">♡</button>
+                </div>
+                <div class="marketplace-info">
+                    <div class="marketplace-price-row">
+                        <span class="marketplace-price">$110.000 COP</span>
+                    </div>
+                    <h3 class="marketplace-title">Infinito Fractal Dorado</h3>
+                    <p class="marketplace-location body-text">FRACTALES · Eternidad</p>
+                    <div class="marketplace-stock ui-text">
+                        ✅ Disponible
+                    </div>
+                    <button class="btn-marketplace-cta ui-text" onclick="addToCart('Infinito Fractal')">Portar símbolo</button>
                 </div>
             </div>
         </div>

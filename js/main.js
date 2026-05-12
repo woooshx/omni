@@ -55,6 +55,73 @@ function subscribe(event) {
 }
 
 // ========================================
+// FILTROS DE PRODUCTOS - ESTILO MARKETPLACE
+// ========================================
+function initProductFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.marketplace-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remover clase active de todos los botones
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Añadir clase active al botón seleccionado
+            button.classList.add('active');
+
+            const filterValue = button.getAttribute('data-filter');
+
+            // Filtrar productos
+            productCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                
+                if (filterValue === 'all' || category === filterValue) {
+                    card.style.display = 'block';
+                    // Animación fade-in
+                    card.style.opacity = '0';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                    }, 50);
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+}
+
+// ========================================
+// WISHLIST / FAVORITOS
+// ========================================
+function initWishlist() {
+    const wishlistButtons = document.querySelectorAll('.wishlist-btn');
+
+    wishlistButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evitar que se dispare el click en la tarjeta
+            button.classList.toggle('active');
+            
+            // Cambiar ícono
+            if (button.classList.contains('active')) {
+                button.textContent = '♥';
+                // Animación de latido
+                button.style.animation = 'heartbeat 0.6s ease';
+            } else {
+                button.textContent = '♡';
+            }
+
+            // Tracking para analytics
+            const productName = button.closest('.marketplace-card')?.querySelector('.marketplace-title')?.textContent;
+            window.dispatchEvent(new CustomEvent('wishlistToggled', { 
+                detail: { 
+                    productName, 
+                    isFavorite: button.classList.contains('active') 
+                } 
+            }));
+        });
+    });
+}
+
+// ========================================
 // STICKY CTA PARA MÓVIL
 // ========================================
 function initStickyCta() {
@@ -201,6 +268,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroParallax();
     initScarcityCounter();
     initLazyLoading();
+    initProductFilters();
+    initWishlist();
 
     // Log de inicialización
     console.log('✨ OMNI Sales Page inicializada correctamente');
