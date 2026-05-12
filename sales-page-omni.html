@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMNI | No es lo que llevas. Es lo que representas.</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Quintessential&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ========================================
+           VARIABLES DE COLOR - PALETA ALQUÍMICA
+           ======================================== */
+        :root {
+            /* 80% - Base del Misterio */
+            --azul-profundo-cosmos: #0B1026;
+            --negro-profundo-akasha: #050505;
+            --gris-carbon: #2E2E2E;
+            --sombra-amatista: #1A1525;
+            --verde-musgo-ritual: #14201A;
+            
+            /* 10% - Sabiduría y Estructura */
+            --oro-sagrado-metalico: #C5A059;
+            --blanco-pergamino: #F4F1EA;
+            --morado-astral: #4A148C;
+            --cobre-terrenal: #B87333;
+            --plata-lunar: #B0C4DE;
+            
+            /* 10% - Energía Alquímica (CTA) */
+            --fucsia-tercer-ojo: #D500F9;
+            --ambar-alquimico: #FFD700;
+            --rojo-fuego-vital: #FF3D00;
+            --esmeralda-cuantico: #00FF7F;
+            
+            /* Tipografías */
+            --font-titulos: 'Cinzel Decorative', cursive;
+            --font-cuerpo: 'Quintessential', cursive;
+            --font-ui: 'Montserrat', sans-serif;
+        }
+        
+        /* ========================================
+           RESET Y BASE MOBILE-FIRST
+           ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-cuerpo);
+            background-color: var(--azul-profundo-cosmos);
+            color: var(--blanco-pergamino);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* ========================================
+           TIPOGRAFÍA
+           ======================================== */
+        h1, h2, h3, h4 {
+            font-family: var(--font-titulos);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .body-text {
+            font-family: var(--font-cuerpo);
+            font-size: 1.125rem;
+        }
+        
+        .ui-text {
+            font-family: var(--font-ui);
+            font-weight: 500;
+        }
+        
+        /* ========================================
+           COMPONENTES UI
+           ======================================== */
+        .btn-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--fucsia-tercer-ojo) 0%, #9C00BF 100%);
+            color: var(--blanco-pergamino);
+            font-family: var(--font-ui);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(213, 0, 249, 0.4);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(213, 0, 249, 0.6);
+        }
+        
+        .btn-cta:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--oro-sagrado-metalico);
+            color: var(--oro-sagrado-metalico);
+            box-shadow: none;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--oro-sagrado-metalico);
+            color: var(--negro-profundo-akasha);
+        }
+        
+        /* Badge de escasez FOMO */
+        .scarcity-badge {
+            background-color: var(--rojo-fuego-vital);
+            color: var(--blanco-pergamino);
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* Badge de éxito */
+        .success-badge {
+            background-color: var(--esmeralda-cuantico);
+            color: var(--negro-profundo-akasha);
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        /* ========================================
+           HEADER / NAV
+           ======================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(11, 16, 38, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: var(--font-titulos);
+            font-size: 1.5rem;
+            color: var(--oro-sagrado-metalico);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        
+        .cart-icon {
+            position: relative;
+            color: var(--blanco-pergamino);
+            font-size: 1.25rem;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--fucsia-tercer-ojo);
+            color: var(--blanco-pergamino);
+            font-family: var(--font-ui);
+            font-size: 0.625rem;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 1.5rem 4rem;
+            background: radial-gradient(ellipse at center, var(--sombra-amatista) 0%, var(--azul-profundo-cosmos) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(213, 0, 249, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(197, 160, 89, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+        
+        .hero-badge {
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--oro-sagrado-metalico);
+            text-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: var(--plata-lunar);
+        }
+        
+        .hero-description {
+            font-family: var(--font-cuerpo);
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: var(--blanco-pergamino);
+            line-height: 1.8;
+        }
+        
+        .hero-cta-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        /* ========================================
+           SECCIÓN DE VALOR (Beneficios)
+           ======================================== */
+        .value-section {
+            padding: 4rem 1.5rem;
+            background-color: var(--negro-profundo-akasha);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--oro-sagrado-metalico);
+            margin-bottom: 3rem;
+        }
+        
+        .value-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .value-card {
+            background: linear-gradient(135deg, var(--sombra-amatista) 0%, var(--azul-profundo-cosmos) 100%);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(197, 160, 89, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(197, 160, 89, 0.3);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--fucsia-tercer-ojo);
+        }
+        
+        .value-card h3 {
+            font-size: 1.25rem;
+            color: var(--blanco-pergamino);
+            margin-bottom: 0.75rem;
+        }
+        
+        .value-card p {
+            font-family: var(--font-cuerpo);
+            color: var(--plata-lunar);
+            font-size: 1rem;
+        }
+        
+        /* ========================================
+           SECCIÓN DE PRODUCTOS (Colecciones)
+           ======================================== */
+        .products-section {
+            padding: 4rem 1.5rem;
+            background-color: var(--azul-profundo-cosmos);
+        }
+        
+        .product-card {
+            background: var(--sombra-amatista);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(197, 160, 89, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            border-color: rgba(213, 0, 249, 0.3);
+            box-shadow: 0 4px 20px rgba(213, 0, 249, 0.1);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, var(--gris-carbon) 0%, var(--azul-profundo-cosmos) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .product-image-placeholder {
+            font-family: var(--font-titulos);
+            font-size: 3rem;
+            color: rgba(197, 160, 89, 0.2);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-collection {
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            color: var(--oro-sagrado-metalico);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.5rem;
+            color: var(--blanco-pergamino);
+            margin-bottom: 0.75rem;
+        }
+        
+        .product-story {
+            font-family: var(--font-cuerpo);
+            color: var(--plata-lunar);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .product-price {
+            font-family: var(--font-ui);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--oro-sagrado-metalico);
+            margin-bottom: 1rem;
+        }
+        
+        .stock-indicator {
+            font-family: var(--font-ui);
+            font-size: 0.875rem;
+            color: var(--rojo-fuego-vital);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* ========================================
+           TESTIMONIOS (Prueba Social)
+           ======================================== */
+        .testimonials-section {
+            padding: 4rem 1.5rem;
+            background: linear-gradient(135deg, var(--sombra-amatista) 0%, var(--negro-profundo-akasha) 100%);
+        }
+        
+        .testimonial-card {
+            background: var(--azul-profundo-cosmos);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--oro-sagrado-metalico);
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-stars {
+            color: var(--ambar-alquimico);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-text {
+            font-family: var(--font-cuerpo);
+            font-size: 1.125rem;
+            color: var(--blanco-pergamino);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .testimonial-author {
+            font-family: var(--font-ui);
+            font-size: 0.875rem;
+            color: var(--plata-lunar);
+        }
+        
+        /* ========================================
+           SOBRE OMNI (Storytelling)
+           ======================================== */
+        .about-section {
+            padding: 4rem 1.5rem;
+            background-color: var(--negro-profundo-akasha);
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .about-text {
+            font-family: var(--font-cuerpo);
+            font-size: 1.25rem;
+            color: var(--blanco-pergamino);
+            line-height: 2;
+            margin-bottom: 2rem;
+        }
+        
+        .about-highlight {
+            color: var(--oro-sagrado-metalico);
+            font-weight: 700;
+        }
+        
+        /* ========================================
+           NEWSLETTER (Captura de Leads)
+           ======================================== */
+        .newsletter-section {
+            padding: 4rem 1.5rem;
+            background: radial-gradient(ellipse at center, var(--morado-astral) 0%, var(--azul-profundo-cosmos) 100%);
+            text-align: center;
+        }
+        
+        .newsletter-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .newsletter h2 {
+            font-size: 2rem;
+            color: var(--oro-sagrado-metalico);
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter p {
+            font-family: var(--font-cuerpo);
+            font-size: 1.125rem;
+            color: var(--plata-lunar);
+            margin-bottom: 2rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .newsletter-input {
+            width: 100%;
+            padding: 1rem;
+            background: var(--sombra-amatista);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 4px;
+            color: var(--blanco-pergamino);
+            font-family: var(--font-ui);
+            font-size: 1rem;
+        }
+        
+        .newsletter-input::placeholder {
+            color: var(--plata-lunar);
+        }
+        
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--fucsia-tercer-ojo);
+            box-shadow: 0 0 10px rgba(213, 0, 249, 0.3);
+        }
+        
+        /* ========================================
+           FOOTER
+           ======================================== */
+        footer {
+            background-color: var(--negro-profundo-akasha);
+            padding: 3rem 1.5rem;
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-family: var(--font-titulos);
+            font-size: 2rem;
+            color: var(--oro-sagrado-metalico);
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-link {
+            font-family: var(--font-ui);
+            font-size: 0.875rem;
+            color: var(--plata-lunar);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--oro-sagrado-metalico);
+        }
+        
+        .footer-tagline {
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            color: var(--plata-lunar);
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-copyright {
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            color: var(--plata-lunar);
+        }
+        
+        /* ========================================
+           STICKY CTA (Mobile)
+           ======================================== */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(11, 16, 38, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.5rem;
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
+            z-index: 999;
+            display: none;
+        }
+        
+        .sticky-cta.visible {
+            display: block;
+        }
+        
+        /* ========================================
+           MEDIA QUERIES (Tablet & Desktop)
+           ======================================== */
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .value-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            
+            .hero-cta-container {
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            .btn-cta {
+                width: auto;
+            }
+            
+            .newsletter-form {
+                flex-direction: row;
+            }
+            
+            .newsletter-input {
+                flex: 1;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* ========================================
+           ANIMACIONES
+           ======================================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Glow effect para elementos destacados */
+        .glow-effect {
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(197, 160, 89, 0.6);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="#" class="logo">OMNI</a>
+            <div class="cart-icon">
+                🛒
+                <span class="cart-count">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="scarcity-badge">🔥 DROP LIMITADO - SOLO 50 UNIDADES</span>
+            </div>
+            <h1>No es lo que llevas.<br>Es lo que representas.</h1>
+            <p class="hero-subtitle">Bienvenido al Círculo OMNI</p>
+            <p class="hero-description body-text">
+                Transformamos la ropa en un vehículo de identidad, expresión y conexión espiritual. 
+                Cada pieza es una <span class="about-highlight">armadura energética</span> que refuerza quien eres 
+                y conecta con tus creencias más profundas.
+            </p>
+            <div class="hero-cta-container">
+                <a href="#coleccion" class="btn-cta ui-text">Reivindica tu energía →</a>
+                <a href="#historia" class="btn-cta btn-secondary ui-text">Descubre el mito</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="value-section" id="beneficios">
+        <h2 class="section-title">¿Por qué OMNI?</h2>
+        <div class="value-grid">
+            <div class="value-card fade-in">
+                <div class="value-icon">👁️</div>
+                <h3 class="ui-text">Símbolos de Poder</h3>
+                <p class="body-text">No vendemos prendas, vendemos herramientas de transformación personal con geometría sagrada.</p>
+            </div>
+            <div class="value-card fade-in">
+                <div class="value-icon">✨</div>
+                <h3 class="ui-text">Calidad Alquímica</h3>
+                <p class="body-text">Algodón orgánico premium con bordados en hilo Oro Sagrado que resisten el paso del tiempo.</p>
+            </div>
+            <div class="value-card fade-in">
+                <div class="value-icon">📜</div>
+                <h3 class="ui-text">Guía de Activación</h3>
+                <p class="body-text">Cada reliquia incluye una etiqueta QR con la historia esotérica de tu símbolo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="coleccion">
+        <h2 class="section-title">Reliquias Disponibles</h2>
+        <div class="product-grid value-grid">
+            <!-- Producto 1: CODEX MAGNUM -->
+            <div class="product-card fade-in">
+                <div class="product-image">
+                    <span class="product-image-placeholder">⬡</span>
+                    <div class="product-badge">
+                        <span class="scarcity-badge">Solo 5 unidades</span>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection ui-text">CODEX MAGNUM</div>
+                    <h3 class="product-title">El Cubo de Metatrón</h3>
+                    <p class="product-story body-text">
+                        El mapa de la creación. Contiene todas las formas platónicas del universo. 
+                        Porta este símbolo para activar estructura, protección y el entendimiento de que todo está conectado.
+                    </p>
+                    <div class="product-price ui-text">$95.000 COP</div>
+                    <div class="stock-indicator ui-text">
+                        🔥 Quedan 5 reliquias
+                    </div>
+                    <button class="btn-cta ui-text" onclick="addToCart('Cubo de Metatrón')">Portar el símbolo</button>
+                </div>
+            </div>
+
+            <!-- Producto 2: ZEN-TIDO COMÚN -->
+            <div class="product-card fade-in">
+                <div class="product-image">
+                    <span class="product-image-placeholder">☕</span>
+                    <div class="product-badge">
+                        <span class="success-badge">Más vendido</span>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection ui-text">ZEN-TIDO COMÚN</div>
+                    <h3 class="product-title">Mi Aura no tiene cobertura</h3>
+                    <p class="product-story body-text">
+                        Una barra de señal apagada combinada con un halo de luz. 
+                        El recordatorio perfecto para establecer límites sanos y proteger tu energía.
+                    </p>
+                    <div class="product-price ui-text">$85.000 COP</div>
+                    <div class="stock-indicator ui-text">
+                        ⚡ Alta demanda
+                    </div>
+                    <button class="btn-cta ui-text" onclick="addToCart('Aura sin cobertura')">Portar el símbolo</button>
+                </div>
+            </div>
+
+            <!-- Producto 3: FRACTALES -->
+            <div class="product-card fade-in">
+                <div class="product-image">
+                    <span class="product-image-placeholder">🌀</span>
+                    <div class="product-badge">
+                        <span class="scarcity-badge">Última oportunidad</span>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-collection ui-text">FRACTALES</div>
+                    <h3 class="product-title">Portal Toroidal Neón</h3>
+                    <p class="product-story body-text">
+                        Un agujero de gusano de luz vibrante que parece absorberte hacia el centro del pecho. 
+                        El viaje más largo y psicodélico es el viaje hacia el interior.
+                    </p>
+                    <div class="product-price ui-text">$110.000 COP</div>
+                    <div class="stock-indicator ui-text">
+                        🔥 Solo 2 unidades
+                    </div>
+                    <button class="btn-cta ui-text" onclick="addToCart('Portal Toroidal')">Portar el símbolo</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section" id="testimonios">
+        <h2 class="section-title">Portadores del Círculo</h2>
+        <div class="testimonial-card fade-in">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text body-text">
+                "Desde que porto el Ouroboros, siento que cerré un ciclo en mi vida. No es solo una camiseta, 
+                es un recordatorio diario de mi propio renacimiento. La calidad es increíble."
+            </p>
+            <p class="testimonial-author ui-text">— Valentina R., Medellín</p>
+        </div>
+        <div class="testimonial-card fade-in">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text body-text">
+                "La guía de significado que viene con la prenda me encantó. Entender el simbolismo detrás 
+                del Merkaba hizo que la compra valiera cada peso. OMNI entiende a su comunidad."
+            </p>
+            <p class="testimonial-author ui-text">— Sebastián M., Bogotá</p>
+        </div>
+        <div class="testimonial-card fade-in">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text body-text">
+                "Por fin una marca que combina espiritualidad con diseño contemporáneo. 
+                El Fucsia Tercer Ojo de los detalles es simplemente mágico. Ya quiero el próximo drop."
+            </p>
+            <p class="testimonial-author ui-text">— Camila T., Cali</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="historia">
+        <div class="about-content">
+            <h2 class="section-title">El Origen OMNI</h2>
+            <p class="about-text body-text">
+                OMNI nació como un <span class="about-highlight">refugio digital y estético</span> para quienes 
+                no solo quieren verse diferentes, sino sentir el resplandor de lo que representan.
+            </p>
+            <p class="about-text body-text">
+                Somos tu guía espiritual moderno y ese amigo cercano que te lee las cartas en un café. 
+                Creemos en la alquimia de transformar lo cotidiano en algo extraordinario.
+            </p>
+            <p class="about-text body-text">
+                Cada pieza es forjada con intención, usando la <span class="about-highlight">Regla 80/10/10</span>: 
+                80% misterio, 10% sabiduría ancestral y 10% energía pura que no puedes ignorar.
+            </p>
+            <a href="#coleccion" class="btn-cta ui-text">Únete al Círculo OMNI</a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter-section" id="unete">
+        <div class="newsletter-content">
+            <h2>Has encontrado el camino</h2>
+            <p class="body-text">
+                Únete al Círculo OMNI y recibe un <span class="about-highlight">10% de descuento</span> 
+                en tu primera armadura, además de acceso anticipado a los próximos drops.
+            </p>
+            <form class="newsletter-form" onsubmit="subscribe(event)">
+                <input type="email" class="newsletter-input ui-text" placeholder="Tu correo electrónico" required>
+                <button type="submit" class="btn-cta ui-text">Activar mi 10%</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">OMNI</div>
+            <div class="footer-links">
+                <a href="#" class="footer-link ui-text">Colecciones</a>
+                <a href="#" class="footer-link ui-text">Sobre Nosotros</a>
+                <a href="#" class="footer-link ui-text">Envíos y Devoluciones</a>
+                <a href="#" class="footer-link ui-text">Contacto</a>
+                <a href="#" class="footer-link ui-text">Instagram</a>
+                <a href="#" class="footer-link ui-text">TikTok</a>
+            </div>
+            <p class="footer-tagline ui-text">FORJADO EN COLOMBIA</p>
+            <p class="footer-copyright ui-text">© OMNI 2026. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Sticky CTA (Mobile) -->
+    <div class="sticky-cta" id="stickyCta">
+        <a href="#coleccion" class="btn-cta ui-text">Ver Reliquias Disponibles</a>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Carrito simple
+        let cartCount = 0;
+        
+        function addToCart(productName) {
+            cartCount++;
+            document.querySelector('.cart-count').textContent = cartCount;
+            
+            // Feedback visual
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = '✓ Añadido';
+            button.style.background = 'linear-gradient(135deg, #00FF7F 0%, #00C853 100%)';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '';
+            }, 2000);
+            
+            // Analytics tracking (ejemplo)
+            console.log(`Producto añadido: ${productName}`);
+        }
+        
+        // Suscripción newsletter
+        function subscribe(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input').value;
+            
+            // Simulación de suscripción
+            alert(`¡Bienvenido al Círculo OMNI! Tu código de 10% ha sido enviado a: ${email}`);
+            event.target.reset();
+        }
+        
+        // Sticky CTA visibility
+        window.addEventListener('scroll', () => {
+            const stickyCta = document.getElementById('stickyCta');
+            const heroSection = document.querySelector('.hero');
+            const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+            
+            if (window.scrollY > heroBottom && window.innerWidth < 768) {
+                stickyCta.classList.add('visible');
+            } else {
+                stickyCta.classList.remove('visible');
+            }
+        });
+        
+        // Animaciones fade-in al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scroll para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
